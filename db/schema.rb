@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_13_211920) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_13_212747) do
+  create_table "csv_imports", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "filename", null: false
+    t.integer "report_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["filename"], name: "index_csv_imports_on_filename", unique: true
+    t.index ["report_id"], name: "index_csv_imports_on_report_id", unique: true
+  end
+
   create_table "employees", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "employee_id", limit: 100, null: false
     t.datetime "created_at", null: false
