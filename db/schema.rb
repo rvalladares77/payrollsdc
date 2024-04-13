@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_13_212747) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_13_214225) do
   create_table "csv_imports", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "filename", null: false
     t.integer "report_id", null: false
@@ -37,5 +37,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_212747) do
     t.index ["name"], name: "index_job_groups_on_name", unique: true
   end
 
+  create_table "work_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "employee_id", null: false
+    t.date "work_date", null: false
+    t.decimal "hours_worked", precision: 5, scale: 2, null: false
+    t.bigint "csv_import_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["csv_import_id"], name: "index_work_logs_on_csv_import_id"
+    t.index ["employee_id"], name: "index_work_logs_on_employee_id"
+    t.index ["work_date"], name: "index_work_logs_on_work_date"
+  end
+
   add_foreign_key "employees", "job_groups", on_delete: :nullify
+  add_foreign_key "work_logs", "csv_imports", on_delete: :nullify
+  add_foreign_key "work_logs", "employees", on_delete: :cascade
 end
