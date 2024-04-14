@@ -6,7 +6,6 @@ class PayrollReportService
 
   private
 
-
     def generate_payroll_report
       payroll_report = {}
 
