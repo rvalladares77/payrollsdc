@@ -1,12 +1,12 @@
 # README
 
-Dependencies
+## Dependencies
 
   * Ruby 3.1.4
   * Rails 7.1.3.2
   * mysql  Ver 8.0.36-0ubuntu0.22.04.1
 
-Installation:
+## Installation
 
 Please run the following commands:
 
