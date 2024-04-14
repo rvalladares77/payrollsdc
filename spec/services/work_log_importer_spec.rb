@@ -33,12 +33,14 @@ RSpec.describe WorkLogImporter do
 
         expect(employee1.work_logs.first.work_date.strftime('%Y-%m-%d')).to eq('2023-11-14')
         expect(employee1.work_logs.first.hours_worked.hours).to eq(7.5.hours)
+        expect(employee1.work_logs.first.job_group_id).to eq(job_group_a.id)
 
         employee2_dates = employee2.work_logs.map {|work_log|  work_log.work_date.strftime('%Y-%m-%d') }
         expect(employee2_dates).to match_array(['2023-11-09', '2023-11-10'])
 
         employee2_worked_hours = employee2.work_logs.map {|work_log|  work_log.hours_worked.hours}
         expect(employee2_worked_hours).to match_array([4.hours, 4.hours])
+        expect(employee2.work_logs.pluck(:job_group_id).uniq).to match_array([job_group_b.id])
 
         expect(WorkLog.all.count).to eq(3)
       end
