@@ -23,13 +23,13 @@ class PayrollReportService
 
         if amount_paid_first_half.positive?
           payroll_report[employee_id] << payroll_attrs(employee_id: employee_id, 
-                                                       dates:       date_first_half(year, month),
+                                                       dates:       dates_first_half(year, month),
                                                        amount_paid: amount_paid_first_half)
         end
 
         if amount_paid_second_half.positive?
           payroll_report[employee_id] << payroll_attrs(employee_id: employee_id, 
-                                                       dates:       date_second_half(year, month),  
+                                                       dates:       dates_second_half(year, month),  
                                                        amount_paid: amount_paid_second_half)
         end
       end
@@ -55,7 +55,7 @@ class PayrollReportService
         employeeId: options[:employee_id],
         payPeriod: {
               startDate: date_format(options[:dates][:start_date]),
-              endDate: date_format(options[:dates][:end_date])
+              endDate:   date_format(options[:dates][:end_date])
           },
         amountPaid: currency_format(options[:amount_paid])
       }
@@ -73,11 +73,11 @@ class PayrollReportService
       hourly_rate * hours_workd
     end
 
-    def date_first_half(year, month)
+    def dates_first_half(year, month)
       { start_date: Date.new(year, month, 1), end_date: Date.new(year, month, 15)}
     end
 
-    def date_second_half(year, month)
+    def dates_second_half(year, month)
       { start_date: Date.new(year, month, 16), end_date: Date.new(year, month, 16).end_of_month}
     end
 
