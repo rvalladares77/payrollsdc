@@ -1,6 +1,6 @@
 require 'csv'
 
-class WorkLogImporter
+class WorkLogImporterService
   attr_reader :file
 
   ZERO = 0
