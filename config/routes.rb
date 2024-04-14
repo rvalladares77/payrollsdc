@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, defaults: { format: :json } do
       resources :csv_imports, only: [:create]
+      resources :payroll_report, only: [:index]
     end
   end
 
