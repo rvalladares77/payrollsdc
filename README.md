@@ -8,8 +8,6 @@
 
 ## Installation
 
-Please run the following commands:
-
 * Rename config/database-example.yml to config/database.yml and the DB's username and password
 * bundle install
 * rails db:setup
