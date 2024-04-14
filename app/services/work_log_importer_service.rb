@@ -3,9 +3,6 @@ require 'csv'
 class WorkLogImporterService
   attr_reader :file
 
-  ZERO = 0
-
-
   def initialize(file)
     @file = file
   end
