@@ -1,5 +1,6 @@
 class WorkLog < ApplicationRecord
   belongs_to :employee
+  belongs_to :job_group
   belongs_to :csv_import, optional: true
 
   validates :work_date, presence: true
