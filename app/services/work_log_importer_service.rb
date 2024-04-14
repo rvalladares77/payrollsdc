@@ -3,13 +3,15 @@ require 'csv'
 class WorkLogImporterService
   attr_reader :file
 
+  ALREADY_EXISTS = ['Import already exists']
+
   def initialize(file)
     @file = file
   end
 
 
   def create
-    return ['Import already exist'] if invalid_import?
+    return ALREADY_EXISTS if invalid_import?
 
     create_work_log
   end
