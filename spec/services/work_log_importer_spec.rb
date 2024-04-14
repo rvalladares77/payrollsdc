@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe WorkLogImporter do
-  describe '#perform' do
+  describe '#create' do
 
     context 'when the CSV import is invalid' do
       context 'When the report ID already exists'
@@ -18,7 +18,6 @@ RSpec.describe WorkLogImporter do
 
     context 'when the csv import is valid' do
       let(:file) { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'time-report-42.csv')) }
-      let(:employee) {Employee.create(employee_id: )}
       let(:job_group_a) { JobGroup.create(name: 'A', hourly_rate: 20) }
       let(:job_group_b) { JobGroup.create(name: 'B', hourly_rate: 30) }
       let(:employee1) { Employee.create(employee_id: '1', job_group: job_group_a)}
