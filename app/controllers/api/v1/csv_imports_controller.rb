@@ -17,7 +17,7 @@ class Api::V1::CsvImportsController < ApplicationController
       { json: { message: 'File uploaded successfully'} , status: :created }
     end
 
-    def error_message(error)
-      { json: { error: 'Some employees were not found', not_found_employees: error}, status: :unprocessable_entity }
+    def error_message(errors)
+      { json: { error: 'There were some problem while uploading the csv.', details: errors}, status: :unprocessable_entity }
     end
 end
