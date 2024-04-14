@@ -12,7 +12,7 @@ RSpec.describe WorkLogImporter do
 
           wl_importer = WorkLogImporter.new(file)
 
-          expect(wl_importer.create).to be_empty
+          expect(wl_importer.create).to eq(["Import already exist"])
         end
     end
 
