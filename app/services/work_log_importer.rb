@@ -63,7 +63,8 @@ class WorkLogImporter
         employee_id:   employee.id,
         work_date:     row[:date],
         hours_worked:  row[:hours_worked],
-        csv_import_id: import.id
+        csv_import_id: import.id,
+        job_group_id:  employee.id
       }
 
     end
