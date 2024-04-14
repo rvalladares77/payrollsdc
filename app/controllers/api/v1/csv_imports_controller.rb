@@ -1,7 +1,7 @@
 class Api::V1::CsvImportsController < ApplicationController
 
   def create
-    errors = WorkLogImporter.new(params[:file]).create
+    errors = WorkLogImporterService.new(params[:file]).create
     
     if errors.empty?
       render succesfull_message
