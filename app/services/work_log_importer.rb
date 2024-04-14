@@ -12,7 +12,7 @@ class WorkLogImporter
 
 
   def create
-    return [] if invalid_import?
+    return ['Import already exist'] if invalid_import?
 
     create_work_log
   end
@@ -64,7 +64,7 @@ class WorkLogImporter
         work_date:     row[:date],
         hours_worked:  row[:hours_worked],
         csv_import_id: import.id,
-        job_group_id:  employee.id
+        job_group_id:  employee.job_group_id
       }
 
     end
