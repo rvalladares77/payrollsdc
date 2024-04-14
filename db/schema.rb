@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_13_214225) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_14_032138) do
   create_table "csv_imports", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "filename", null: false
     t.integer "report_id", null: false
@@ -44,12 +44,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_214225) do
     t.bigint "csv_import_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "job_group_id", null: false
     t.index ["csv_import_id"], name: "index_work_logs_on_csv_import_id"
     t.index ["employee_id"], name: "index_work_logs_on_employee_id"
+    t.index ["job_group_id"], name: "index_work_logs_on_job_group_id"
     t.index ["work_date"], name: "index_work_logs_on_work_date"
   end
 
   add_foreign_key "employees", "job_groups", on_delete: :nullify
   add_foreign_key "work_logs", "csv_imports", on_delete: :nullify
   add_foreign_key "work_logs", "employees", on_delete: :cascade
+  add_foreign_key "work_logs", "job_groups", on_delete: :cascade
 end
